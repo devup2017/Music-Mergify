@@ -194,7 +194,7 @@
 - (void)updateBottomWithDelay {
     
     trackArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"tracks"];
-    
+    NSLog(@"trackArrya%@",trackArray);
     if (trackArray == nil) {
         [title setText:[NSString stringWithFormat:@""]];
         [subTitle setText:[NSString stringWithFormat:@""]];

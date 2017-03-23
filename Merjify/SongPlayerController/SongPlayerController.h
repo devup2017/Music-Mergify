@@ -47,6 +47,8 @@
 
 @property (nonatomic, strong) NSArray *arr_songList;
 
+@property (strong, nonatomic) NSMutableDictionary *playlistDict;
+
 @property (nonatomic) BOOL isPlayingAlbum;
 
 @property (nonatomic) BOOL isFirstTime;

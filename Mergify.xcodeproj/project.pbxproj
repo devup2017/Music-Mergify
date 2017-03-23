@@ -913,7 +913,7 @@
 				TargetAttributes = {
 					DE095D331D38AA2A00ED634B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = X3CAFYDCSB;
+						DevelopmentTeam = AC73CDWS2P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1122,8 +1122,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Avram (76F7CJKS8F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Avram (76F7CJKS8F)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = X3CAFYDCSB;
@@ -1146,7 +1146,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0bc9de7f-f77e-4e9f-b385-f89284593593";
+				PROVISIONING_PROFILE = "47b3d575-c728-4cd9-972e-b69fc7a2f0f2";
 				PROVISIONING_PROFILE_SPECIFIER = Mergify_Dev;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7s";
@@ -1173,8 +1173,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Avram (76F7CJKS8F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Avram (76F7CJKS8F)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = X3CAFYDCSB;
@@ -1190,7 +1190,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "0bc9de7f-f77e-4e9f-b385-f89284593593";
+				PROVISIONING_PROFILE = "47b3d575-c728-4cd9-972e-b69fc7a2f0f2";
 				PROVISIONING_PROFILE_SPECIFIER = Mergify_Dev;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1205,8 +1205,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Mergify.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
-				DEVELOPMENT_TEAM = X3CAFYDCSB;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Avram (76F7CJKS8F)";
+				DEVELOPMENT_TEAM = AC73CDWS2P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Merjify",
@@ -1224,8 +1224,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netforce.Merjify;
 				PRODUCT_NAME = Mergify;
-				PROVISIONING_PROFILE = "079a3377-13ba-4dab-9195-7d2641f90351";
-				PROVISIONING_PROFILE_SPECIFIER = Mergify_Dev;
+				PROVISIONING_PROFILE = "47b3d575-c728-4cd9-972e-b69fc7a2f0f2";
+				PROVISIONING_PROFILE_SPECIFIER = Merjify2_dev;
 				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
@@ -1237,9 +1237,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Mergify.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhishek Kumar (J846HY6XS4)";
-				DEVELOPMENT_TEAM = X3CAFYDCSB;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Avram (76F7CJKS8F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Avram (76F7CJKS8F)";
+				DEVELOPMENT_TEAM = AC73CDWS2P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Merjify",
@@ -1257,8 +1257,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netforce.Merjify;
 				PRODUCT_NAME = Mergify;
-				PROVISIONING_PROFILE = "079a3377-13ba-4dab-9195-7d2641f90351";
-				PROVISIONING_PROFILE_SPECIFIER = Mergify_Dev;
+				PROVISIONING_PROFILE = "47b3d575-c728-4cd9-972e-b69fc7a2f0f2";
+				PROVISIONING_PROFILE_SPECIFIER = Merjify2_dev;
 				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;

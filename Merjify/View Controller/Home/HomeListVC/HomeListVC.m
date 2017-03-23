@@ -609,6 +609,7 @@
 
 - (void)getSoundcloudTrackListWithID:(NSString *)userID {
     
+    NSMutableDictionary *playlistDict = [[NSMutableDictionary alloc]init];
     NSString *params = [NSString stringWithFormat:@"/users/%@/playlists?oauth_token=%@",userID,[[NSUserDefaults standardUserDefaults] valueForKey:SC_TOKEN]];
     
     //https://api.soundcloud.com/users/226061062/playlists?oauth_token=1-255147-226061062-bf530dca6554d
@@ -622,17 +623,22 @@
          
          //NSLog(@"Soundcloud response ---- >>>>%@",items);
          
+         
          if ([items isKindOfClass:[NSArray class]])
          {
              if ([items count]>0)
              {
+                 
                  NSMutableArray *tempArr = [[NSMutableArray array] init];
                  
                  for (int i=0; i<[items count] ; i++) {
                      
+                     NSString *playlistsTitle = [[items valueForKey:@"title"] objectAtIndex:i];
+                     NSMutableArray *tempPlaylistsArr = [[NSMutableArray array] init];
+                     
                      for (int j=0; j<[[[items valueForKey:@"tracks"] objectAtIndex:i] count]; j++) {
                          
-                         NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+                         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]init];
                          
                          [tempDic setValue:[[[[items valueForKey:@"tracks"] objectAtIndex:i] valueForKey:@"title"] objectAtIndex:j] forKey:@"title"];
                          
@@ -657,9 +663,17 @@
                          [tempDic setValue:[[[[items valueForKey:@"tracks"] objectAtIndex:i] valueForKey:@"uri"] objectAtIndex:j] forKey:@"uri"];
                          
                          [tempArr addObject:tempDic];
+                         [tempPlaylistsArr addObject:tempDic];
                          
                      }
+                     if(playlistsTitle.length > 0){
+                         [playlistDict setObject:tempPlaylistsArr forKey:playlistsTitle];
+                         NSLog(@"=====playlistDict%@",playlistDict);
+                     }
+    
                  }
+                 
+                 [[NSUserDefaults standardUserDefaults] setObject:playlistDict forKey:@"Playlist"];
                  /*
                  NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
                  NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];

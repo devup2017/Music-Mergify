@@ -243,8 +243,7 @@
                 
             } else {
                 
-                [songsImageView sd_setImageWithURL:[NSURL URLWithString:[[[playListData valueForKey:songTitle.text] objectAtIndex:0] valueForKey:@"albumImage"]] placeholderImage:[UIImage imageNamed:@"profileplaceholder.jpg"]];
-                
+                [songsImageView sd_setImageWithURL:[NSURL URLWithString:[[[playListData valueForKey:songTitle.text] objectAtIndex:0] valueForKey:@"albumImage"]] placeholderImage:[UIImage imageNamed:@"profileplaceholder.jpg"]];                
             }
         }
         

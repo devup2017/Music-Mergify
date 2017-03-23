@@ -393,7 +393,10 @@ static dispatch_once_t onceToken;
     } else {
         if (self.arr_songList.count > 0)
         {
+            NSLog(@"===========%@",self.arr_songList);
             [THIS didUpdateControlSetupWithData:[self.arr_songList objectAtIndex:_currentPlayingTrackIndex]];
+        }else{
+
         }
         
     }
@@ -985,8 +988,8 @@ static dispatch_once_t onceToken;
 
 - (void)setIsLoggedIn:(BOOL)isLoggedIn {
     
-    NSLog(@"Token : %@",[[[DeezerSession sharedSession] deezerConnect] accessToken]);
-    NSLog(@"Expiration Date : %@",[[[DeezerSession sharedSession] deezerConnect] expirationDate]);
+//    NSLog(@"Token : %@",[[[DeezerSession sharedSession] deezerConnect] accessToken]);
+//    NSLog(@"Expiration Date : %@",[[[DeezerSession sharedSession] deezerConnect] expirationDate]);
     
     [self showUser];
 }
@@ -1034,13 +1037,9 @@ static dispatch_once_t onceToken;
                 
                 NSString *str = [NSString stringWithFormat:@"error in fetching playlist method = %@",[error localizedDescription]];
                 
-                //Displayalert(APPLICATION_NAME, str, _controller,[NSArray arrayWithObject:@"OK"],1)
-                
                 NSLog(@"%@",str);
                 
             } else if ([value isKindOfClass:[DZRObjectList class]]) {
-                
-                NSLog(@"value = %@",value);
                 
                 [self performSelectorOnMainThread:@selector(fetchPlaylists:) withObject:value waitUntilDone:YES];
                 
@@ -1060,18 +1059,17 @@ static dispatch_once_t onceToken;
 }
 
 - (void)fetchPlaylists:(DZRObjectList *)list {
-    
+
     [list allObjectsWithManager:[DZRRequestManager defaultManager] callback:^(NSArray *objs, NSError *error) {
-        
-        NSLog(@"playlists = %@",objs);
         
         [self performSelectorOnMainThread:@selector(fetchTracksMethod:) withObject:objs waitUntilDone:YES];
         
     }];
 }
 
+
 - (void)fetchTracksMethod:(NSArray *)arrPlaylists {
-    
+    self.playlistDict = [[NSMutableDictionary alloc]init];
     _arr_DeezerList  = [NSMutableArray array];
     
     dispatch_queue_t serialQueue = dispatch_queue_create("com.netforce.Merjify.queue", DISPATCH_QUEUE_SERIAL);
@@ -1081,9 +1079,7 @@ static dispatch_once_t onceToken;
         dispatch_sync(serialQueue, ^{
             
             DZRObject *object = [arrPlaylists objectAtIndex:i];
-            
-            NSLog(@"supportedMethodKeys = %@",object.supportedMethodKeys);
-            
+            self.playlistTitle = [object valueForKey:@"title"];
             if ([object.supportedMethodKeys containsObject:@"tracks"]) {
                 
                 dispatch_sync( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -1101,9 +1097,10 @@ static dispatch_once_t onceToken;
                         } else if ([value isKindOfClass:[DZRObjectList class]] && [object isPlayable]) {
                             
                             //self.playable = (id<DZRPlayable>)object;
+                            NSLog(@"====deezer value : %@",value);
                             
                             dispatch_sync( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                
+                                self.playlistTitle = [object valueForKey:@"title"];
                                 [self performSelectorOnMainThread:@selector(fetchTracksOfAPlaylist:) withObject:value waitUntilDone:YES];
                                 
                                 //NSLog(@"-------------------------- loop count -------------- %d ------------",i);
@@ -1136,7 +1133,8 @@ static dispatch_once_t onceToken;
 }
 
 - (void)fetchTracksOfAPlaylist:(DZRObjectList *)list {
-    
+
+    NSMutableArray *tempPlaylistsArr = [[NSMutableArray array] init];
     [list allObjectsWithManager:[DZRRequestManager defaultManager] callback:^(NSArray *objs, NSError *error) {
         
         if (error) {
@@ -1151,10 +1149,11 @@ static dispatch_once_t onceToken;
             
             //NSLog(@"%@",objs);
             
+            
             for (int i = 0; i < [objs count]; i++) {
                 
+                NSLog(@"=====objs: %@", [objs objectAtIndex:i]);
                 NSDictionary *songDic = [objs objectAtIndex:i];
-                
                 NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
                 
                 if (![[songDic valueForKey:@"stream"] isKindOfClass:[NSString class]] && ![[songDic valueForKey:@"readable"] boolValue]) {
@@ -1186,12 +1185,18 @@ static dispatch_once_t onceToken;
                     //[tempDic setValue:data forKey:@"playable"];
                     
                     [_arr_DeezerList addObject:tempDic];
+                    [tempPlaylistsArr addObject:tempDic];
                     
                 }
                 
             }
         }
     }];
+
+    if(self.playlistTitle.length > 0){
+        [self.playlistDict setObject:tempPlaylistsArr forKey:self.playlistTitle];
+        NSLog(@"=====playlistDict%@",self.playlistDict);
+    }
 }
 
 - (void)updateData {
@@ -1218,6 +1223,8 @@ static dispatch_once_t onceToken;
         
         [[NSUserDefaults standardUserDefaults] setValue:_arr_DeezerList forKey:@"deezerTracks"];
         //[[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:self.playlistDict forKey:@"Playlist"];
         
     }
 }

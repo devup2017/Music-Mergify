@@ -411,7 +411,7 @@ static AppDelegate *temp;
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             SPTPlaylistList *playlistAlbum = (SPTPlaylistList *)object;
-            
+            NSLog(@"===========spotify%@",playlistAlbum.items);
             for (int i = 0; i < playlistAlbum.items.count; i++) {
                 
                 SPTPartialPlaylist *partialPlaylist = [playlistAlbum.items objectAtIndex:i];

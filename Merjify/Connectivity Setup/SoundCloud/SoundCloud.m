@@ -87,6 +87,7 @@
     NSLog(@"response body; %@",responseBody);
     
     NSMutableDictionary *resultJSON =[responseBody objectFromJSONString];
+    NSLog(@"=======resultJSON%@",resultJSON);
     self.scToken=[resultJSON objectForKey:@"access_token"];
     [[NSUserDefaults standardUserDefaults] setObject:self.scToken forKey:SC_TOKEN];
     [[NSUserDefaults standardUserDefaults] synchronize];

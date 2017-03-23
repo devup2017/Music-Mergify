@@ -18,9 +18,16 @@
     
     //[[UIApplication sharedApplication] openURL:[SPTAuth defaultInstance].loginURL];
     
-    [[UIApplication sharedApplication] openURL:[SPTAuth defaultInstance].spotifyWebAuthenticationURL options:nil completionHandler:nil];
+    NSLog(@"System Version is %@",[[UIDevice currentDevice] systemVersion]);
+    NSString *ver = [[UIDevice currentDevice] systemVersion];
+    float ver_float = [ver floatValue];
+    if (ver_float < 10.0){
+        [[UIApplication sharedApplication] openURL:[SPTAuth defaultInstance].spotifyWebAuthenticationURL];
+    }else {
+        [[UIApplication sharedApplication] openURL:[SPTAuth defaultInstance].spotifyWebAuthenticationURL options:nil completionHandler:nil];
+    }
+    
 }
-
 
 - (void)spotifySetup {
     
